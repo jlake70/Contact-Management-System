@@ -1,1 +1,7 @@
 Contact List Elements:
+
+1,Joshua Lake,4049160330,jlake7021@gmail.com,8853 Merseyside
+
+2,Toni Lake,9048052318,tonimayling@gmail.com,reup
+
+3,John John,1234567890,me2m@gmail.com,in house
