@@ -47,11 +47,50 @@ def add_contacts(contacts):
     }
     print("Contact added successfully.")
 def edit_contacts(contacts):
-    pass
+    unique_id = validate_input(r'\S+', "Enter unique identifier of the contact to edit: ")
+    if unique_id not in contacts:
+        print("Contact not found.")
+        return
+    print("Leave the field blank if you don't want to change it.")
+    name = input("Enter name: ")
+    phone = input("Enter phone number (10 digits): ")
+    email = input("Enter email address: ")
+    additional_info = input("Enter additional information (address, notes): ")
+
+    if name:
+        contacts[unique_id]['Name'] = name
+    if phone:
+        if re.fullmatch(r'\d{10}', phone):
+            contacts[unique_id]['Phone'] = phone
+        else:
+            print("Invalid phone number format.")
+    if email:
+        if re.fullmatch(r'[^@]+@[^@]+\.[^@]+', email):
+            contacts[unique_id]['Email'] = email
+        else:
+            print("Invalid email format.")
+    if additional_info:
+        contacts[unique_id]['Additional Info'] = additional_info
+    
+    print("Contact edited successfully.")
 def delete_contacts(contacts):
-    pass
+    unique_id = validate_input(r'\S+', "Enter unique identifier of the contact to delete: ")
+    if unique_id in contacts:
+        del contacts[unique_id]
+        print("Contact deleted successfully.")
+    else:
+        print("Contact not found.")
+
 def search_for_contacts(contacts):
-    pass
+    unique_id = validate_input(r'\S+', "Enter unique identifier of the contact to search: ")
+    if unique_id in contacts:
+        contact = contacts[unique_id]
+        print(f"Name: {contact['Name']}")
+        print(f"Phone: {contact['Phone']}")
+        print(f"Email: {contact['Email']}")
+        print(f"Additional Info: {contact['Additional Info']}")
+    else:
+        print("Contact not found.")
 def export_contacts(contacts):
     pass
 def display_contacts(contacts):
@@ -75,7 +114,7 @@ def main():
 
         selection = input("Please enter your option (1-7): ")
         if selection == "1":
-            add_contacts()
+            add_contacts(contacts)
             #write_contacts('Contact_List.txt', contacts)
         elif selection == "2":
             edit_contacts(contacts)
@@ -91,3 +130,4 @@ def main():
             break
         else:
             print("Please enter a valid selection.")
+
