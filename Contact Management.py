@@ -68,12 +68,13 @@ def edit_contacts(contacts, filename= 'Contact_List.txt'):
     if old_email not in contacts:
         print("Contact not found.")
         return
-    print("Leave the field blank if you don't want to change it.")
-    new_email = validate_input(r'[^@]+@[^@]+\.[^@]+', "Enter new email address of the contact to edit: ")
-    name = input("Enter name: ") or contacts[old_email]['Name']
-    phone = input("Enter phone number (10 digits): ")or contacts[old_email]['Phone']
+    else:
+        print("Leave the field blank if you don't want to change it.")
+        new_email = validate_input(r'[^@]+@[^@]+\.[^@]+', "Enter new email address of the contact to edit: ")
+        name = input("Enter name: ") or contacts[old_email]['Name']
+        phone = input("Enter phone number (10 digits): ")or contacts[old_email]['Phone']
     
-    additional_info = input("Enter additional information (address, notes): ")or contacts[old_email]['Additional Info']
+        additional_info = input("Enter additional information (address, notes): ")or contacts[old_email]['Additional Info']
 
     if new_email != old_email and new_email in contacts:
         print("Contact with this new email already exists.")
