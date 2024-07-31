@@ -1,9 +1,5 @@
 import re
 
-
-#with open('Contact_List.txt', 'w') as file:
-    #file.write("Contact List Elements:")
-
 def validate_input(pattern, prompt):
     while True:
         data = input(prompt)
@@ -13,8 +9,7 @@ def validate_input(pattern, prompt):
             print("Invalid input format. Please try again.")
 
 
-def read_contacts(filename='Contact_List.txt'):
-    
+def read_contacts(filename='Contact_List.txt'):   
     try:
         with open(filename, 'r') as file:
             for line in file:
@@ -34,12 +29,6 @@ def read_contacts(filename='Contact_List.txt'):
         print(f"An error occurred while reading contacts: {e}")
 
     
-
-#def write_contacts(filename, contacts):
- #   with open(filename, 'a') as file:
-  #      for contact in contacts:
-   #         file.write(f"{contacts[name]}, {contacts[phone_number]}, {contacts[email_address]}, {contacts[additional_info]}\n")
-
 def add_contacts(contacts, filename="Contact_List.txt"):
     email = validate_input(r'[^@]+@[^@]+\.[^@]+', "Enter email address: ")
     if email in contacts:
@@ -88,17 +77,7 @@ def edit_contacts(contacts, filename= 'Contact_List.txt'):
         'Additional Info': additional_info
     }
     
-    #if name:
-    #    contacts[old_email]['Name'] = name
-    #if phone:
-    #    if re.fullmatch(r'\d{10}', phone):
-     #       contacts[old_email]['Phone'] = phone
-      #  else:
-       #     print("Invalid phone number format.")
-    
-   # if additional_info:
-    #    contacts[old_email]['Additional Info'] = additional_info
-    
+   
     print("Contact edited successfully.")
     export_contacts(contacts, filename)
 
@@ -142,12 +121,8 @@ def display_contacts(contacts):
     else:
         print("No contacts available.")
 
-
-
 def main():
     contacts = {}
-   
-
     while True:
         print("\nWelcome to the Contact Management Application!\n")
         print("Menu: ")
