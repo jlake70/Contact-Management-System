@@ -124,7 +124,7 @@ def search_for_contacts(contacts):
 
 def export_contacts(contacts, filename="Contact_List.txt"):
     try:
-        with open(filename, 'w') as file:
+        with open(filename, 'a') as file:
             for email, contact in contacts.items():
                 file.write(f"{email},{contact['Name']},{contact['Phone']},{contact['Additional Info']}\n")
         print("Contacts exported successfully.")
@@ -142,11 +142,27 @@ def display_contacts(contacts):
     else:
         print("No contacts available.")
 
-
-
+def import_contacts(contacts, filename='Contact_List.txt'):
+    try:
+        with open(filename, 'r') as file:
+            for line in file:
+                if line.strip():
+                    parts = line.strip().split(',')
+                    if len(parts) == 4:
+                        email, name, phone, additional_info = parts
+                        contacts[email] = {
+                            'Name': name,
+                            'Phone': phone,
+                            'Additional Info': additional_info
+                        }
+    except FileNotFoundError:
+        print("File does not exist.")
+    except Exception as e:
+        print(f"Error loading file: {e}")
 
 def main():
     contacts = {}
+    import_contacts(contacts)
 
     while True:
         print("\nWelcome to the Contact Management Application!\n")
